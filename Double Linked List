@@ -1,0 +1,414 @@
+//Node.java
+class Node{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+}
+//Creation.java
+public class Creation {
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Node head=new Node(10);
+        Node n1=new Node(20);
+        Node n2=new Node(30);
+        Node n3=new Node(40);
+        head.next=n1;
+        n1.prev=head;
+        n1.next=n2;
+        n2.prev=n1;
+        n2.next=n3;
+        n3.prev=n2;
+        display(head);
+
+    }
+}
+//UserCreation.java
+import java.util.Scanner;
+
+public class UserCreation {
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.print("Enter the number of Node : ");
+       int n=sc.nextInt();
+       if(n<=0){
+        System.out.println("The list cannot be empty!");
+        return;
+       }
+       System.out.print("Enter data for node 1: ");
+       int data=sc.nextInt();
+       Node head=new Node(data);
+       Node current=head;
+       for(int i=2;i<=n;i++){
+        System.out.print("Enter data for node "+i+" : ");
+        data=sc.nextInt();
+        Node newNode=new Node(data);
+        current.next=newNode;
+        newNode.prev=current;
+        current=newNode;
+       }
+       System.out.println("The Created Doubly linked list is: ");
+       display(head);
+
+    }
+}
+//InsertionAtBeginning.java
+import java.util.Scanner;
+
+public class InsertionAtBeginning {
+    public static Node insertBegin(Node head,int data){
+        Node newNode=new Node(data);
+        newNode.next=head;
+        if(head!=null){
+            head.prev=newNode;
+        }
+        return newNode;
+    }
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+        }
+        System.out.println();
+    }
+     public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.print("Enter the number of Node : ");
+       int n=sc.nextInt();
+       if(n<=0){
+        System.out.println("The list cannot be empty!");
+        return;
+       }
+       System.out.print("Enter data for node 1: ");
+       int data=sc.nextInt();
+       Node head=new Node(data);
+       Node current=head;
+       for(int i=2;i<=n;i++){
+        System.out.print("Enter data for node "+i+" : ");
+        data=sc.nextInt();
+        Node newNode=new Node(data);
+        current.next=newNode;
+        newNode.prev=current;
+        current=newNode;
+       }
+       System.out.println("The Created Doubly linked list is: ");
+       display(head);
+       System.out.print("Enter the data to be inserted at the beginning: ");
+       int val=sc.nextInt();
+       head=insertBegin(head, val);
+       display(head);
+
+    }
+}
+//InsertionAtEnd.java
+import java.util.Scanner;
+
+public class InsertionAtEnd {
+    public static Node insertEnd(Node head,int data){
+        Node newNode =new Node(data);
+        if(head==null){
+            return newNode;
+        }
+        Node temp=head;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode;
+        newNode.prev=temp;
+     return head;
+    }
+     public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+        }
+        System.out.println();
+    }
+     public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.print("Enter the number of Node : ");
+       int n=sc.nextInt();
+       if(n<=0){
+        System.out.println("The list cannot be empty!");
+        return;
+       }
+       System.out.print("Enter data for node 1: ");
+       int data=sc.nextInt();
+       Node head=new Node(data);
+       Node current=head;
+       for(int i=2;i<=n;i++){
+        System.out.print("Enter data for node "+i+" : ");
+        data=sc.nextInt();
+        Node newNode=new Node(data);
+        current.next=newNode;
+        newNode.prev=current;
+        current=newNode;
+       }
+       System.out.println("The Created Doubly linked list is: ");
+       display(head);
+       System.out.print("Enter the data to be inserted at the End: ");
+       int val=sc.nextInt();
+       head=insertEnd(head, val);
+       display(head);
+
+    }
+}
+//InsetAtPosition.java
+import java.util.Scanner;
+
+public class InsetAtPosition {
+    public static Node insertPosition(Node head, int data, int pos) {
+       Node newNode=new Node(data);
+    if(pos==1){
+        newNode.next=head;
+        if(head!=null){
+            head.prev=newNode;
+        }
+        return newNode;
+    }
+    Node curr=head;
+    for(int i=1;i<pos-1&&curr!=null;i++){
+        curr=curr.next;
+    }
+    newNode.next=curr.next;
+    newNode.prev=curr;
+    if(curr.next!=null){
+        curr.next.prev=newNode;
+    }
+    curr.next=newNode;
+    return head;
+    }
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+        }
+        System.out.println();
+    }
+     public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.print("Enter the number of Node : ");
+       int n=sc.nextInt();
+       if(n<=0){
+        System.out.println("The list cannot be empty!");
+        return;
+       }
+       System.out.print("Enter data for node 1: ");
+       int data=sc.nextInt();
+       Node head=new Node(data);
+       Node current=head;
+       for(int i=2;i<=n;i++){
+        System.out.print("Enter data for node "+i+" : ");
+        data=sc.nextInt();
+        Node newNode=new Node(data);
+        current.next=newNode;
+        newNode.prev=current;
+        current=newNode;
+       }
+       System.out.println("The Created Doubly linked list is: ");
+       display(head);
+       System.out.print("Enter the position to inser the element: ");
+       int pos=sc.nextInt();
+       System.out.print("Enter the data to be inserted at the End: ");
+       int val=sc.nextInt();
+       
+       head=insertPosition(head, val,pos);
+       display(head);
+
+}
+}
+//DeletionAtBeginning.java
+import java.util.Scanner;
+
+public class DeletionAtBeginning {
+    public static Node deleteBeg(Node head){
+        if(head==null){
+            return null;
+        }
+        if(head.next==null){
+            return null;
+        }
+        head=head.next;
+        head.prev=null;
+        return head;
+    }
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+        }
+        System.out.println();
+    }
+     public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.print("Enter the number of Node : ");
+       int n=sc.nextInt();
+       if(n<=0){
+        System.out.println("The list cannot be empty!");
+        return;
+       }
+       System.out.print("Enter data for node 1: ");
+       int data=sc.nextInt();
+       Node head=new Node(data);
+       Node current=head;
+       for(int i=2;i<=n;i++){
+        System.out.print("Enter data for node "+i+" : ");
+        data=sc.nextInt();
+        Node newNode=new Node(data);
+        current.next=newNode;
+        newNode.prev=current;
+        current=newNode;
+       }
+       System.out.println("The Created Doubly linked list is: ");
+       display(head);
+       
+       head=deleteBeg(head);
+       display(head);
+
+}
+}
+//DeletionAtEnd.java
+import java.util.Scanner;
+
+public class DeletionAtEnd {
+    public static Node deleteAtEnd(Node head){
+        if(head==null){
+            return null;
+        }
+        if(head.next==null){
+            return null;
+        }
+        Node temp=head;
+        while(temp.next.next!=null){
+            temp=temp.next;
+        }
+        temp.next=null;
+        return head;
+    }
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+        }
+        System.out.println();
+    }
+     public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.print("Enter the number of Node : ");
+       int n=sc.nextInt();
+       if(n<=0){
+        System.out.println("The list cannot be empty!");
+        return;
+       }
+       System.out.print("Enter data for node 1: ");
+       int data=sc.nextInt();
+       Node head=new Node(data);
+       Node current=head;
+       for(int i=2;i<=n;i++){
+        System.out.print("Enter data for node "+i+" : ");
+        data=sc.nextInt();
+        Node newNode=new Node(data);
+        current.next=newNode;
+        newNode.prev=current;
+        current=newNode;
+       }
+       System.out.println("The Created Doubly linked list is: ");
+       display(head);
+       
+       head=deleteAtEnd(head);
+       display(head);
+
+}
+}
+//DeletionAtPosition.java
+import java.util.Scanner;
+
+public class DeletionAtPosition {
+    public static Node deletePosition(Node head,int pos){
+        if(head==null || pos<=0){
+            return head;
+        }
+        if(pos==1){
+         Node newNode=head.next;
+         if(newNode!=null){
+            newNode.prev=null;
+         }
+         return newNode;
+        }
+        Node current=head;
+        for(int i=1;i<pos && current!=null;i++){
+            current=current.next;
+        }
+        if(current==null){
+            System.out.println("Position outof bounds");
+            return head;
+        }
+        if(current.next!=null){
+            current.next.prev=current.prev;
+        }
+        if(current.prev!=null){
+            current.prev.next=current.next;
+        }
+        return head;
+    }
+    public static void display(Node head){
+        Node temp=head;
+        while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+        }
+        System.out.println();
+    }
+     public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       System.out.print("Enter the number of Node : ");
+       int n=sc.nextInt();
+       if(n<=0){
+        System.out.println("The list cannot be empty!");
+        return;
+       }
+       System.out.print("Enter data for node 1: ");
+       int data=sc.nextInt();
+       Node head=new Node(data);
+       Node current=head;
+       for(int i=2;i<=n;i++){
+        System.out.print("Enter data for node "+i+" : ");
+        data=sc.nextInt();
+        Node newNode=new Node(data);
+        current.next=newNode;
+        newNode.prev=current;
+        current=newNode;
+       }
+       System.out.println("The Created Doubly linked list is: ");
+       display(head);
+       System.out.print("Enter the position to delete the element: ");
+       int pos=sc.nextInt();
+       head=deletePosition(head,pos);
+       display(head);
+
+}
+}
